@@ -1,0 +1,51 @@
+/* ===== Trenó (mascote + Papai Noel), issues, presentes, bonecos de neve e duendes ===== */
+.sleigh { position: absolute; left: 0; top: 0; z-index: 9; animation: fly 22s linear infinite; }
+@keyframes fly { 0% { transform: translate(-360px, 420px); } 42% { transform: translate(2240px, 250px); } 100% { transform: translate(2240px, 250px); } }
+.bob { animation: bob .9s ease-in-out infinite alternate; }
+@keyframes bob { 0% { transform: translateY(-8px) rotate(-3deg); } 100% { transform: translateY(8px) rotate(3deg); } }
+.treno-git { transform-origin: 50% 100%; animation: trenogit .9s ease-in-out infinite alternate; }
+@keyframes trenogit { 0% { transform: rotate(-16deg); } 100% { transform: rotate(-2deg); } }
+.treno-rosto { border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #fff, 0 3px 6px rgba(0, 0, 0, .25); }
+
+/* issues arremessadas do saco do Papai Noel */
+#issues { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; z-index: 10; }
+.issue {
+  position: absolute; left: 0; top: 0; width: 200px; box-sizing: border-box; padding: 8px 10px 9px 12px;
+  border-radius: 12px; background: #fff; border-left: 7px solid #FC6D26; box-shadow: 0 8px 16px rgba(20, 50, 90, .28);
+  font-family: 'Fredoka', 'Trebuchet MS', sans-serif; will-change: transform, opacity;
+}
+.issue .topo { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 15px; color: #6B5E8C; }
+.issue .topo svg { width: 18px; height: 18px; flex: none; }
+.issue .lbl { margin-left: auto; padding: 1px 8px; border-radius: 999px; background: #DD2B0E; color: #fff; font-size: 12px; letter-spacing: .5px; }
+.issue .tit { margin-top: 3px; font-weight: 600; font-size: 15px; line-height: 1.15; color: #2B2D42; }
+
+/* presentes */
+.hop { transform-origin: 50% 100%; animation: hop 2.6s ease-in-out infinite; }
+@keyframes hop { 0%, 58%, 100% { transform: translateY(0) scale(1, 1); } 66% { transform: translateY(0) scale(1.08, .9); } 78% { transform: translateY(-34px) scale(.95, 1.06); } 88% { transform: translateY(0) scale(1.05, .94); } 94% { transform: translateY(0) scale(1, 1); } }
+
+/* bonecos de neve */
+.sway { transform-origin: 50% 100%; animation: sway 2.8s ease-in-out infinite alternate; }
+@keyframes sway { 0% { transform: rotate(-2.5deg); } 100% { transform: rotate(2.5deg); } }
+.wave { transform-origin: 0 50%; animation: wave .7s ease-in-out infinite alternate; }
+@keyframes wave { 0% { transform: rotate(-62deg); } 100% { transform: rotate(-22deg); } }
+.blink { animation: blink 4.5s infinite; }
+@keyframes blink { 0%, 90%, 100% { transform: scaleY(1); } 93% { transform: scaleY(.1); } 96% { transform: scaleY(1); } }
+.flutter { transform-origin: 50% 0; animation: flutter .8s ease-in-out infinite alternate; }
+@keyframes flutter { 0% { transform: rotate(10deg); } 100% { transform: rotate(-16deg); } }
+
+/* tropa de duendes correndo atrás do café */
+.tropa { position: absolute; left: 0; top: 906px; width: 720px; height: 160px; z-index: 7; will-change: transform; animation: tropa 30s linear infinite; animation-delay: -14s; }
+@keyframes tropa { 0% { transform: translate3d(2000px, 0, 0); } 55% { transform: translate3d(-780px, 0, 0); } 100% { transform: translate3d(-780px, 0, 0); } }
+.duende { position: absolute; top: 0; width: 110px; height: 150px; transform-origin: 50% 100%; animation: corre .26s ease-in-out infinite alternate; }
+@keyframes corre { 0% { transform: translateY(0) rotate(-7deg); } 100% { transform: translateY(-9px) rotate(-3deg); } }
+.duende .corpo { position: absolute; inset: 0; transform: scaleX(-1); }
+.duende svg { position: absolute; left: 0; top: 0; overflow: visible; }
+.duende .pe { animation: passo .26s ease-in-out infinite alternate; }
+.duende .pe.tras { animation-direction: alternate-reverse; }
+@keyframes passo { 0% { transform: rotate(-32deg); } 100% { transform: rotate(32deg); } }
+.duende .rosto { position: absolute; left: 29px; top: 14px; width: 52px; height: 52px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #fff, 0 3px 6px rgba(0, 0, 0, .25); }
+.duende .vapor { animation: vapor 1.2s ease-in-out infinite; }
+@keyframes vapor { 0% { opacity: 0; transform: translateY(4px); } 50% { opacity: .9; } 100% { opacity: 0; transform: translateY(-10px); } }
+.duende .balao { position: absolute; left: -6px; top: -46px; padding: 3px 10px; border-radius: 12px; background: #fff; color: #6F3B1E; font-weight: 700; font-size: 17px; box-shadow: 0 3px 6px rgba(0, 0, 0, .2); animation: balao 2.2s ease-in-out infinite; }
+.duende .balao:after { content: ''; position: absolute; left: 40px; bottom: -7px; border: 7px solid transparent; border-top-color: #fff; border-bottom: 0; }
+@keyframes balao { 0%, 100% { transform: scale(.9); } 50% { transform: scale(1.08); } }
