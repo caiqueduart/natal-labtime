@@ -18,6 +18,7 @@
     N.iniciarNeve(stage);
     N.iniciarIssues(stage);
     N.iniciarCenas(stage);
+    N.iniciarSurpresas(stage);
     // as trocas de fotos começam só depois que todas estão carregadas
     N.preCarregar().then(() => N.iniciarBolinhas(stage));
     N.vigiarEquipe();

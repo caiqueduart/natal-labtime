@@ -9,6 +9,8 @@ window.NATAL_CONFIG = {
 
   papaiNoel: 'Adelaide',        // rosto do Papai Noel no trenó
   liderDuendes: 'Paulo Sérgio', // duende da frente, com a jarra de café
+  surpresaPresentes: ['Elvia', 'Gilson'], // de vez em quando saem das caixas grandes da frente (esquerda, direita) jogando bolsinhas de dinheiro
+  surpresaACadaSegundos: 20,              // de quanto em quanto tempo alguém sai (um de cada vez, alternando); 0 desliga
   intervaloEntreCenas: 3,       // segundos de cena vazia entre café, hackers, picaretas e trenó (uma por vez)
   mascote: 'img/mascote.png',
 

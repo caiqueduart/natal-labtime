@@ -1,10 +1,10 @@
 /* ===== Chão: presentes pulando e bonecos de neve ===== */
 (function (N) {
   const PRESENTES = [
-    { x: 380, w: 130, h: 110, cor: '#E5383B', fita: '#FFD43B', z: 4 },
+    { x: 380, w: 130, h: 110, cor: '#E5383B', fita: '#FFD43B', z: 4, surpresa: 0, bolsas: [[170, 240], [560, 640]] }, // 1ª pessoa de surpresaPresentes sai daqui; bolsinhas caem nessas faixas de x
     { x: 270, w: 96, h: 82, cor: '#7048E8', fita: '#FFFFFF', z: 4 },
     { x: 460, w: 78, h: 64, cor: '#20C997', fita: '#FF4D6D', z: 6 },
-    { x: 1410, w: 130, h: 110, cor: '#FFD43B', fita: '#E5383B', z: 4 },
+    { x: 1410, w: 130, h: 110, cor: '#FFD43B', fita: '#E5383B', z: 4, surpresa: 1, bolsas: [[1240, 1320], [1665, 1730]] }, // 2ª pessoa sai daqui
     { x: 1554, w: 96, h: 82, cor: '#339AF0', fita: '#FFFFFF', z: 4 },
     { x: 1350, w: 78, h: 64, cor: '#FF6FAE', fita: '#FFD43B', z: 6 }
   ];
@@ -13,16 +13,26 @@
     { x: 1630, flip: 'scaleX(-1)', cachecol: '#339AF0', cachecol2: '#FFD43B', cartola: false, dl: -0.9 }
   ];
 
+  // a tampa (com o laço) é um bloco só, para poder pular na surpresa (js/cena/surpresa.js);
+  // nas caixas com surpresa, quem sai fica escondido dentro, atrás da frente da caixa
   const presentes = () => PRESENTES.map((g, k) =>
     '<div class="abs" style="left:' + g.x + 'px;top:' + (1066 - g.h) + 'px;width:' + g.w + 'px;height:' + g.h + 'px;z-index:' + g.z + '">' +
       '<div class="abs hop" style="left:0;top:0;width:' + g.w + 'px;height:' + g.h + 'px;animation-delay:' + (-(k * 0.83)).toFixed(2) + 's">' +
+      (g.surpresa !== undefined ? N.saidaSurpresa(g.surpresa, g.w) : '') +
       '<div class="abs" style="left:0;top:14px;width:' + g.w + 'px;height:' + (g.h - 14) + 'px;border-radius:6px;background:' + g.cor + ';box-shadow:inset -14px 0 0 rgba(0,0,0,.12),0 8px 16px rgba(30,80,120,.25)"></div>' +
-      '<div class="abs" style="left:-7px;top:0;width:' + (g.w + 14) + 'px;height:24px;border-radius:6px;background:' + g.cor + ';box-shadow:inset 0 -5px 0 rgba(0,0,0,.15)"></div>' +
-      '<div class="abs" style="left:50%;top:0;width:18px;height:' + g.h + 'px;margin-left:-9px;background:' + g.fita + '"></div>' +
-      '<div class="abs" style="left:50%;top:-24px;width:38px;height:26px;margin-left:-38px;box-sizing:border-box;border:8px solid ' + g.fita + ';border-radius:50%;transform:rotate(-24deg)"></div>' +
-      '<div class="abs" style="left:50%;top:-24px;width:38px;height:26px;box-sizing:border-box;border:8px solid ' + g.fita + ';border-radius:50%;transform:rotate(24deg)"></div>' +
-      '<div class="abs" style="left:50%;top:-7px;width:16px;height:14px;margin-left:-8px;border-radius:5px;background:' + g.fita + '"></div>' +
+      '<div class="abs" style="left:50%;top:14px;width:18px;height:' + (g.h - 14) + 'px;margin-left:-9px;background:' + g.fita + '"></div>' +
+      '<div class="abs tampa"' + (g.surpresa !== undefined ? ' data-tampa="' + g.surpresa + '"' : '') + ' style="left:0;top:0;width:' + g.w + 'px;height:24px">' +
+        '<div class="abs" style="left:-7px;top:0;width:' + (g.w + 14) + 'px;height:24px;border-radius:6px;background:' + g.cor + ';box-shadow:inset 0 -5px 0 rgba(0,0,0,.15)"></div>' +
+        '<div class="abs" style="left:50%;top:0;width:18px;height:24px;margin-left:-9px;background:' + g.fita + '"></div>' +
+        '<div class="abs" style="left:50%;top:-24px;width:38px;height:26px;margin-left:-38px;box-sizing:border-box;border:8px solid ' + g.fita + ';border-radius:50%;transform:rotate(-24deg)"></div>' +
+        '<div class="abs" style="left:50%;top:-24px;width:38px;height:26px;box-sizing:border-box;border:8px solid ' + g.fita + ';border-radius:50%;transform:rotate(24deg)"></div>' +
+        '<div class="abs" style="left:50%;top:-7px;width:16px;height:14px;margin-left:-8px;border-radius:5px;background:' + g.fita + '"></div>' +
+      '</div>' +
       '</div></div>').join('');
+
+  // onde as caixas com surpresa estão no palco (para as bolsinhas saírem da mão de quem sai)
+  N.PRESENTES_SURPRESA = PRESENTES.filter((g) => g.surpresa !== undefined)
+    .map((g) => ({ i: g.surpresa, x: g.x, w: g.w, topo: 1066 - g.h, bolsas: g.bolsas }));
 
   const bonecos = () => {
     const neve = 'radial-gradient(circle at 38% 32%,#FFFFFF 0%,#FFFFFF 45%,#D3E8F5 100%)';

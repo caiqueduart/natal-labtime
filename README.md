@@ -9,6 +9,8 @@ As fotos da equipe aparecem nas bolinhas e vão trocando de lugar. Na frente da 
 3. **Picaretas:** a equipe, de picareta na mão, e o mascote caramelo correm atrás do hacker.
 4. **Trenó:** o Papai Noel com o mascote atravessa o céu arremessando issues do saco do GitLab.
 
+De vez em quando, a tampa de uma das caixas grandes de presente da frente pula e sai alguém da equipe (Elvia de um lado, Gilson do outro) jogando bolsinhas de dinheiro na neve.
+
 ## Feita para rodar por dias
 
 - Animações só de `transform`/`opacity`, que a placa de vídeo faz sem redesenhar a tela.
@@ -44,6 +46,7 @@ js/
     bolinhas.js       bolinhas com fotos e a lógica de troca
     placa.js          placa "EQUIPE LabTIME"
     chao.js           presentes e bonecos de neve
+    surpresa.js       quem sai das caixas de presente jogando bolsinhas de dinheiro
     duendes.js        duendes correndo atrás do café (e o corpo do duende das outras cenas)
     hackers.js        cenas dos hackers e das picaretas com o mascote
     textos.js         letras do "Feliz Natal!"
@@ -86,6 +89,7 @@ Como a árvore descobre as fotos:
 | `pastaEquipe` / `github` | pasta das fotos e repositório de onde ela é lida |
 | `papaiNoel` | quem é o Papai Noel no trenó |
 | `liderDuendes` | duende da frente, com a jarra de café |
+| `surpresaPresentes` / `surpresaACadaSegundos` | quem sai das caixas grandes de presente (esquerda, direita) e de quanto em quanto tempo |
 | `intervaloEntreCenas` | segundos de cena vazia entre uma cena e a próxima |
 
 ## Publicação (GitHub Pages)

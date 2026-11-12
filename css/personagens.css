@@ -81,3 +81,21 @@
 .cao img { position: absolute; left: 0; bottom: 10px; width: 104px; height: auto; transform: scaleX(-1); filter: drop-shadow(0 4px 5px rgba(0, 0, 0, .25)); }
 .cao .poeira { position: absolute; bottom: 2px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px #EAF6FD; animation: poeira .44s ease-in-out infinite alternate; }
 @keyframes poeira { 0% { transform: scale(.85); } 100% { transform: scale(1.1); } }
+
+/* surpresa nas caixas de presente (surpresa.js): quem sai fica escondido até a vez dele */
+.saida { overflow: hidden; pointer-events: none; }
+.saida:not(.ativa) { visibility: hidden; }
+.surpresa { position: absolute; left: 0; bottom: 0; width: 90px; height: 124px; transform: translateY(130px); }
+.surpresa .foto { position: absolute; left: 17px; top: 8px; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #fff, 0 3px 6px rgba(0, 0, 0, .25); }
+.surpresa svg { position: absolute; overflow: visible; }
+.surpresa .braco { position: absolute; top: 56px; width: 13px; height: 40px; border-radius: 7px; background: #C62828; box-shadow: inset 0 -9px 0 #F1C27D; transform-origin: 50% 100%; }
+.surpresa .braco.esq { left: 6px; transform: rotate(-38deg); }
+.surpresa .braco.dir { right: 6px; transform: rotate(38deg); }
+.saida.ativa .braco.dir { animation: aceno .3s ease-in-out infinite alternate; }
+@keyframes aceno { 0% { transform: rotate(18deg); } 100% { transform: rotate(52deg); } }
+.surpresa .balao { position: absolute; left: 50%; top: -34px; transform: translateX(-50%); white-space: nowrap; padding: 3px 10px; border-radius: 12px; background: #fff; color: #1F7A3A; font-weight: 700; font-size: 16px; box-shadow: 0 3px 6px rgba(0, 0, 0, .2); }
+.surpresa .balao:after { content: ''; position: absolute; left: 50%; margin-left: -7px; bottom: -7px; border: 7px solid transparent; border-top-color: #fff; border-bottom: 0; }
+
+/* bolsinhas de dinheiro jogadas na neve */
+#bolsinhas { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; z-index: 8; }
+.bolsinha { position: absolute; left: 0; top: 0; width: 44px; height: 48px; will-change: transform, opacity; filter: drop-shadow(0 4px 4px rgba(30, 60, 100, .3)); }
