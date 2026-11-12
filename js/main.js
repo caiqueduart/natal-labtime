@@ -18,7 +18,9 @@
     N.iniciarNeve(stage);
     N.iniciarIssues(stage);
     N.iniciarCenas(stage);
-    N.iniciarSurpresas(stage);
+    // Elvia e Gilson saindo das caixas de presente com as bolsinhas de dinheiro: desligado por enquanto.
+    // Para voltar, descomente a linha abaixo (quem sai e o intervalo ficam em surpresaPresentes/surpresaACadaSegundos, no config.js).
+    // N.iniciarSurpresas(stage);
     // as trocas de fotos começam só depois que todas estão carregadas
     N.preCarregar().then(() => N.iniciarBolinhas(stage));
     N.vigiarEquipe();
