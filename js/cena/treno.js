@@ -29,6 +29,9 @@
     );
   };
 
+  // voo do trenó pela tela; quem dispara é a sequência de cenas (cenas.js)
+  N.VOO_TRENO = { de: [-400, 420], ate: [2240, 250], ms: 9200 };
+
   N.treno = () => {
     let rastro = '';
     for (let k = 0; k < 7; k++) {
@@ -59,14 +62,13 @@
     camada.id = 'issues';
     stage.appendChild(camada);
     const treno = stage.querySelector('.sleigh');
-    // posição do trenó calculada pelo tempo da animação (sem medir a página)
-    const voo = treno && treno.getAnimations ? treno.getAnimations()[0] : null;
+    // posição do trenó calculada pelo tempo do voo em curso (sem medir a página)
+    const V = N.VOO_TRENO;
     const posTreno = () => {
-      if (!voo) return null;
-      const t = ((voo.currentTime || 0) % 22000) / 22000;
-      if (t > 0.42) return null;
-      const k = t / 0.42;
-      return { x: -360 + 2600 * k, y: 420 - 170 * k };
+      const voo = N.vooTreno;
+      if (!treno || !voo || voo.playState !== 'running') return null;
+      const k = Math.min(1, (voo.currentTime || 0) / V.ms);
+      return { x: V.de[0] + (V.ate[0] - V.de[0]) * k, y: V.de[1] + (V.ate[1] - V.de[1]) * k };
     };
     // 5 cartões reaproveitados para sempre: nada é criado ou destruído durante o loop
     const cartoes = [];

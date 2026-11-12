@@ -10,13 +10,14 @@
       '<div class="arvore">' + N.arvore() + N.bolinhas() + N.placa() + '</div>' +
       N.chao() +
       N.duendes() +
+      N.piratas() +
       N.textos() +
       N.moldura();
 
     N.iniciarTela(stage);
     N.iniciarNeve(stage);
     N.iniciarIssues(stage);
-    N.iniciarDuendes(stage);
+    N.iniciarCenas(stage);
     // as trocas de fotos começam só depois que todas estão carregadas
     N.preCarregar().then(() => N.iniciarBolinhas(stage));
     N.vigiarEquipe();

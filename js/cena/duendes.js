@@ -1,4 +1,5 @@
-/* ===== Duendes correndo atrás do café (líder com a jarra, a turma com copinhos) ===== */
+/* ===== Duendes correndo atrás do café (líder com a jarra, a turma com copinhos) =====
+   O corpo do duende (N.corpoDuende) também é usado nas cenas dos piratas (piratas.js). */
 (function (N) {
   const C = window.NATAL_CONFIG;
 
@@ -8,7 +9,8 @@
     '<rect x="' + x + '" y="114" width="10" height="5" fill="#E5383B"/><rect x="' + x + '" y="124" width="10" height="5" fill="#E5383B"/>' +
     '<path d="M' + (x - 3) + ' 134 h14 q10 0 13 -9 q3 8 -4 13 h-23 z" fill="#1F9D55" stroke="#11673A" stroke-width="1.5"/></svg>';
 
-  const corpo = (item) =>
+  // item: desenho parado na mão; animado: svgs próprios por cima (picareta, braços), que a GPU anima sozinhos
+  const corpo = (item, animado) =>
     perna(44, 'tras') + perna(58, 'frente') +
     '<svg width="110" height="150" viewBox="0 0 110 150" aria-hidden="true">' +
       '<ellipse cx="55" cy="148" rx="30" ry="4" fill="rgba(40,90,140,.18)"/>' +
@@ -19,7 +21,8 @@
     '</svg>' + '<svg width="110" height="150" viewBox="0 0 110 150" aria-hidden="true" style="z-index:2">' +
       '<path d="M26 18 Q36 -34 100 -10 Q74 -8 84 18 Z" fill="#E5383B" stroke="#8A0F1E" stroke-width="2" stroke-linejoin="round"/>' +
       '<circle cx="100" cy="-10" r="6" fill="#FFD43B" stroke="#C98A00" stroke-width="1.5"/>' +
-      '<rect x="24" y="12" width="62" height="10" rx="5" fill="#2FB863" stroke="#11673A" stroke-width="1.5"/>' + item + '</svg>';
+      '<rect x="24" y="12" width="62" height="10" rx="5" fill="#2FB863" stroke="#11673A" stroke-width="1.5"/>' + (item || '') + '</svg>' + (animado || '');
+  N.corpoDuende = corpo;
 
   const JARRA =
     '<path d="M64 78 Q78 72 86 58" fill="none" stroke="#2FB863" stroke-width="9" stroke-linecap="round"/>' +
@@ -36,21 +39,20 @@
   const POS = [[0, 2], [128, -6], [232, 4], [338, -4], [446, 6], [552, 0]];
 
   N.duendes = () =>
-    '<div class="tropa" aria-label="Duendes da equipe correndo atrás do café do ' + C.liderDuendes + '">' +
+    '<div class="tropa" data-cena="cafe" aria-label="Duendes da equipe correndo atrás do café do ' + C.liderDuendes + '">' +
     POS.map((p, i) => '<div class="duende" style="left:' + p[0] + 'px;top:' + p[1] + 'px;animation-delay:' + (-(i * 0.11)).toFixed(2) + 's">' +
       (i === 2 ? '<div class="balao">café!!</div>' : '') +
       '<div class="corpo">' + corpo(i === 0 ? JARRA : COPO) + '</div><img class="rosto" alt="" decoding="async"></div>').join('') + '</div>';
 
-  // rostos: o líder fixo na frente; os demais sorteados a cada volta
-  N.iniciarDuendes = (stage) => {
-    const tropa = stage.querySelector('.tropa');
-    if (!tropa) return;
-    const rostos = [...tropa.querySelectorAll('.duende .rosto')];
+  // rostos sorteados a cada vez que a cena entra; fixo (o líder) sempre no primeiro duende
+  N.sortearRostos = (cena, fixo) => {
+    const rostos = [...cena.querySelectorAll('.duende .rosto')];
     const lider = N.foto(C.liderDuendes);
-    if (lider) { rostos[0].src = lider.src; rostos[0].alt = lider.nome; }
-    const turma = N.FOTOS.filter((p) => p !== lider && p.nome !== C.papaiNoel);
-    const sortear = () => N.embaralhar(turma).slice(0, rostos.length - 1).forEach((p, i) => { rostos[i + 1].src = p.src; rostos[i + 1].alt = p.nome; });
-    sortear();
-    tropa.addEventListener('animationiteration', (e) => { if (e.target === tropa) sortear(); });
+    const turma = N.embaralhar(N.FOTOS.filter((p) => p !== lider && p.nome !== C.papaiNoel));
+    if (!turma.length) return;
+    rostos.forEach((r, i) => {
+      const p = fixo ? (i === 0 ? fixo : turma[(i - 1) % turma.length]) : turma[i % turma.length];
+      if (p) { r.src = p.src; r.alt = p.nome; }
+    });
   };
 })(window.Natal);

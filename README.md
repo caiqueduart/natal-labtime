@@ -2,7 +2,12 @@
 
 Árvore de Natal digital da equipe LabTIME, feita para rodar em loop na TV da sala Dev.
 
-As fotos da equipe aparecem nas bolinhas e vão trocando de lugar. Um Papai Noel no trenó com o mascote arremessa issues, e uma tropa de duendes corre atrás do café.
+As fotos da equipe aparecem nas bolinhas e vão trocando de lugar. Na frente da árvore, quatro cenas se revezam, uma de cada vez, com 3 s de pausa entre elas:
+
+1. **Café:** os duendes da equipe correm atrás do líder com a jarra de café.
+2. **Piratas:** piratas de sabre correm atrás da equipe de duendes, em pânico.
+3. **Picaretas:** a equipe, de picareta na mão, e o mascote caramelo correm atrás do pirata.
+4. **Trenó:** o Papai Noel com o mascote atravessa o céu arremessando issues do saco do GitLab.
 
 ## Feita para rodar por dias
 
@@ -10,6 +15,7 @@ As fotos da equipe aparecem nas bolinhas e vão trocando de lugar. Um Papai Noel
 - Luzes da árvore piscam em 3 grupos (3 animações para ~65 luzes).
 - Neve num único canvas a 30 quadros/s, sempre com os mesmos flocos.
 - Os cartões de issue são 5 elementos reaproveitados: nada é criado ou destruído durante o loop.
+- Só a cena da vez fica visível; as outras ficam escondidas e com as animações paradas.
 - Nada roda com a aba escondida, e a página recarrega sozinha a cada 6 h (configurável) para começar sempre limpa.
 
 ## Como abrir
@@ -26,7 +32,7 @@ index.html            página que carrega tudo
 css/
   base.css            fontes, palco 1920×1080, animações comuns
   arvore.css          céu, árvore, estrela e bolinhas com fotos
-  personagens.css     trenó, issues, presentes, bonecos de neve, duendes
+  personagens.css     trenó, issues, presentes, bonecos de neve, duendes, piratas
   textos.css          "Feliz Natal!"
 js/
   config.js           ⚙️ ajustes (edite aqui)
@@ -38,10 +44,12 @@ js/
     bolinhas.js       bolinhas com fotos e a lógica de troca
     placa.js          placa "EQUIPE LabTIME"
     chao.js           presentes e bonecos de neve
-    duendes.js        duendes correndo atrás do café
+    duendes.js        duendes correndo atrás do café (e o corpo do duende das outras cenas)
+    piratas.js        cenas dos piratas e das picaretas com o mascote
     textos.js         letras do "Feliz Natal!"
     moldura.js        adorno nos cantos da tela
     neve.js           neve (desenhada uma vez, só desliza)
+  cenas.js            revezamento das cenas: café, piratas, picaretas e trenó
   tela.js             encaixe na tela, tela cheia, cursor, tela sempre ligada
   main.js             monta a cena
 team/                 fotos da equipe (o nome do arquivo é o nome da pessoa)
@@ -78,6 +86,7 @@ Como a árvore descobre as fotos:
 | `pastaEquipe` / `github` | pasta das fotos e repositório de onde ela é lida |
 | `papaiNoel` | quem é o Papai Noel no trenó |
 | `liderDuendes` | duende da frente, com a jarra de café |
+| `intervaloEntreCenas` | segundos de cena vazia entre uma cena e a próxima |
 
 ## Publicação (GitHub Pages)
 
