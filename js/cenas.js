@@ -1,4 +1,4 @@
-/* ===== Cenas que se revezam: café, piratas, picaretas e trenó — uma de cada vez =====
+/* ===== Cenas que se revezam: café, hackers, picaretas e trenó — uma de cada vez =====
    Cada cena atravessa a tela inteira; só quando ela sai começa a contagem de
    intervaloEntreCenas (config.js) para a próxima. Fora de cena, a tropa fica escondida
    e com as animações paradas (personagens.css), para não gastar nada na TV. */
@@ -18,7 +18,7 @@
     const V = N.VOO_TRENO;
     const cenas = [
       noChao('cafe', 2000, -780, lider),
-      noChao('piratas', -1100, 1960),
+      noChao('hackers', -1100, 1960),
       noChao('picaretas', 2000, -1000),
       { el: stage.querySelector('.sleigh'), treno: true, ms: V.ms,
         de: 'translate(' + V.de[0] + 'px,' + V.de[1] + 'px)', ate: 'translate(' + V.ate[0] + 'px,' + V.ate[1] + 'px)' }

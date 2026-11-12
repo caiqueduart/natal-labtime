@@ -5,8 +5,8 @@
 As fotos da equipe aparecem nas bolinhas e vão trocando de lugar. Na frente da árvore, quatro cenas se revezam, uma de cada vez, com 3 s de pausa entre elas:
 
 1. **Café:** os duendes da equipe correm atrás do líder com a jarra de café.
-2. **Piratas:** piratas de sabre correm atrás da equipe de duendes, em pânico.
-3. **Picaretas:** a equipe, de picareta na mão, e o mascote caramelo correm atrás do pirata.
+2. **Hackers:** hackers de moletom, com o notebook na mão, correm atrás da equipe de duendes, em pânico.
+3. **Picaretas:** a equipe, de picareta na mão, e o mascote caramelo correm atrás do hacker.
 4. **Trenó:** o Papai Noel com o mascote atravessa o céu arremessando issues do saco do GitLab.
 
 ## Feita para rodar por dias
@@ -32,7 +32,7 @@ index.html            página que carrega tudo
 css/
   base.css            fontes, palco 1920×1080, animações comuns
   arvore.css          céu, árvore, estrela e bolinhas com fotos
-  personagens.css     trenó, issues, presentes, bonecos de neve, duendes, piratas
+  personagens.css     trenó, issues, presentes, bonecos de neve, duendes, hackers
   textos.css          "Feliz Natal!"
 js/
   config.js           ⚙️ ajustes (edite aqui)
@@ -45,11 +45,11 @@ js/
     placa.js          placa "EQUIPE LabTIME"
     chao.js           presentes e bonecos de neve
     duendes.js        duendes correndo atrás do café (e o corpo do duende das outras cenas)
-    piratas.js        cenas dos piratas e das picaretas com o mascote
+    hackers.js        cenas dos hackers e das picaretas com o mascote
     textos.js         letras do "Feliz Natal!"
     moldura.js        adorno nos cantos da tela
     neve.js           neve (desenhada uma vez, só desliza)
-  cenas.js            revezamento das cenas: café, piratas, picaretas e trenó
+  cenas.js            revezamento das cenas: café, hackers, picaretas e trenó
   tela.js             encaixe na tela, tela cheia, cursor, tela sempre ligada
   main.js             monta a cena
 team/                 fotos da equipe (o nome do arquivo é o nome da pessoa)

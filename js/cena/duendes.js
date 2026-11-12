@@ -1,5 +1,5 @@
 /* ===== Duendes correndo atrás do café (líder com a jarra, a turma com copinhos) =====
-   O corpo do duende (N.corpoDuende) também é usado nas cenas dos piratas (piratas.js). */
+   O corpo do duende (N.corpoDuende) também é usado nas cenas dos hackers (hackers.js). */
 (function (N) {
   const C = window.NATAL_CONFIG;
 

@@ -10,7 +10,7 @@
       '<div class="arvore">' + N.arvore() + N.bolinhas() + N.placa() + '</div>' +
       N.chao() +
       N.duendes() +
-      N.piratas() +
+      N.hackers() +
       N.textos() +
       N.moldura();
 
